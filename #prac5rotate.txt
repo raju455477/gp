@@ -1,32 +1,28 @@
 #prac5rotate
 
 
-# c# rotation code for infinte loop of background 
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
-public class scoller : MonoBehaviour
+public class Script : MonoBehaviour
 {
-    public float speed =0.5f;
+    public float speed = 0.5f;
+    private Renderer rend;
 
-
-    // Start is called before the first frame update
+    // Use this for initialization
     void Start()
     {
-       
+        // Get the Renderer component attached to this GameObject
+        rend = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Create an offset that moves over time
         Vector2 offset = new Vector2(Time.time * speed, 0);
-        Renderer renderer = GetComponent<Renderer>();
 
-        if (renderer != null)
-        {
-            renderer.material.mainTextureOffset = offset;
-        }
+        // Apply the offset to the material's texture
+        rend.material.mainTextureOffset = offset;
     }
 }
